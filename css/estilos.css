@@ -1,0 +1,245 @@
+/* DEFINICIÓN DE COLORES PASTEL */
+:root {
+    --color-crema: #fcf8f3;
+    --color-lavanda: #e6e6fa;
+    --color-verde-agua: #d1fae5;
+    --color-terroso: #d9c7b8;
+    --color-texto: #4a4a4a;
+    --color-blanco: #ffffff;
+}
+
+/* RESET GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--color-crema);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+/* 👇 ESTO HACE QUE TODO SE VEA BONITO Y CENTRADO 👇 */
+.contenido, 
+section, 
+main {
+    width: 90% !important;        /* Usa el 90% de la pantalla */
+    max-width: 1200px !important; /* No se hace demasiado grande */
+    margin: 0 auto !important;    /* ✨ SE CENTRA AUTOMÁTICAMENTE */
+    margin-bottom: 50px !important; /* Espacio entre secciones */
+    padding: 20px !important;
+}
+
+/* ----- MENÚ ----- */
+.menu {
+    background-color: var(--color-blanco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    border-bottom: 1px solid var(--color-terroso);
+}
+
+.menu h1 {
+    font-size: 22px;
+    color: var(--color-texto);
+}
+
+.menu nav a {
+    text-decoration: none;
+    color: var(--color-texto);
+    margin-left: 20px;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.menu nav a:hover {
+    color: #9d8cc4;
+}
+
+.carrito-link {
+    font-weight: bold;
+}
+
+/* ----- SECCIÓN INICIO ----- */
+.inicio {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;       /* OCUPA TODO EL ANCHO */
+    min-height: 80vh !important;  /* OCUPA CASI TODA LA PANTALLA DE ALTO */
+    padding: 40px 50px !important;
+    background-color: var(--color-blanco) !important;
+    margin: 20px 0 !important;    /* SOLO ESPACIO ARRIBA Y ABAJO */
+    border-radius: 10px !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+    box-sizing: border-box !important; /* IMPORTANTE */
+}
+
+.inicio img {
+    max-width: 300px;
+    margin-bottom: 15px;
+}
+
+/* ----- SECCIÓN PRODUCTOS ----- */
+.productos {
+    width: 100% !important;
+    padding: 20px 50px 40px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+}
+.productos h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+
+/*.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background-color: var(--color-blanco);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #eeee;
+    transition: transform 0.2s;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}*/
+
+.precio {
+    font-weight: bold;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+.btn-agregar {
+    background-color: var(--color-lavanda);
+    color: var(--color-texto);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-agregar:hover {
+    background-color: #ddd6fe;
+}
+
+#btn-ver {
+    background-color: #e6e6fa !important;
+    color: #4a4a4a !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 18px !important;
+}
+
+
+.btn-ver-productos:hover {
+    background-color: #ddd6fe;
+}
+
+/* ----- SECCIÓN HISTORIA ----- */
+.historia {
+    background-color: var(--color-verde-agua);
+    padding: 40px 50px;
+    text-align: center;
+}
+
+
+.contenido-historia {
+    overflow: hidden; /* ✨ Esto arregla todo automáticamente */
+}
+
+.imagen-historia {
+    float: left;      /* ✨ LA FOTO SE VA A LA IZQUIERDA */
+    margin-right: 40px; /* ✨ Espacio entre la foto y el texto */
+}
+
+.texto-historia {
+    overflow: hidden; /* El texto se acomoda alrededor */
+    text-align: left;
+}
+
+/* ----- SECCIÓN CONTACTO ----- */
+.contacto {
+    background-color: var(--color-terroso);
+    color: var(--color-blanco);
+    padding: 40px 50px;
+    text-align: center;
+}
+
+.contacto p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.contacto i {
+    margin-right: 8px;
+}
+
+.iconos-redes {
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.iconos-redes a {
+    color: var(--color-blanco);
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.item-carrito div {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    width: 100% !important;
+}
+
+.btn-eliminar {
+    background-color: pink !important;      /* 🌸 ROSADO */
+    color: black !important;               /* Letra NEGRA */
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    margin-left: auto !important;          /* ✈️ A LA DERECHA */
+    display: block !important;
+}
+
+.btn-eliminar:hover {
+    background-color: lightpink !important; /* Rosado más clarito */
+}
+

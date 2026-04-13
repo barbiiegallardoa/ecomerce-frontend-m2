@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Espacio Natural</title>
+    
+    <!-- CSS DE BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- ICONOS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+
+    <style>
+        :root {
+            --color-crema: #fcf8f3;
+            --color-lavanda: #e6e6fa;
+            --color-verde-agua: #d1fae5;
+            --color-terroso: #d9c7b8;
+            --color-texto: #4a4a4a;
+            --color-blanco: #ffffff;
+        }
+
+        body {
+            background: var(--color-crema);
+            color: var(--color-texto);
+        }
+
+        /* MENÚ */
+        .menu {
+            background: var(--color-blanco);
+            border-bottom: 1px solid var(--color-terroso);
+        }
+        .menu a {
+            color: var(--color-texto) !important;
+        }
+        .menu a:hover {
+            color: #9d8cc4 !important;
+        }
+
+        /* CAJA CARRITO */
+        .caja-carrito {
+            background: var(--color-blanco);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--color-terroso);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .item-carrito {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        .btn-eliminar {
+            background: #f8d7da;
+            color: #721c2c;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .btn-eliminar:hover {
+            background: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENÚ -->
+    <header class="menu navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Espacio Natural</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#productos">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#historia">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contacto">Contacto</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="carrito.html">
+                            🛒 Carrito <span id="contador" class="badge bg-secondary">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <h2 class="text-center mb-4">Tu Carrito de Compras</h2>
+        <div class="caja-carrito">
+            <div id="lista-carrito">
+                <p class="text-center text-muted">Cargando...</p>
+            </div>
+            <div class="text-end mt-4">
+                <h4>Total: <span id="total-carrito">$0</span></h4>
+                <button class="btn-eliminar mt-2" onclick="vaciarCarrito()">Vaciar Carrito</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white text-center py-4 border-top">
+        <p>&copy; 2025 Espacio Natural - Todos los derechos reservados</p>
+    </footer>
+
+    <!-- JS DE BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SCRIPT CARRITO -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            actualizarCarrito();
+        });
+
+        function actualizarCarrito() {
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            let numeroCarrito = document.getElementById("contador");
+            let listaCarrito = document.getElementById("lista-carrito");
+            let totalCarrito = document.getElementById("total-carrito");
+
+            if(numeroCarrito) numeroCarrito.innerText = carrito.length;
+
+            listaCarrito.innerHTML = "";
+            let total = 0;
+
+            if(carrito.length === 0) {
+                listaCarrito.innerHTML = `<p class="text-center text-muted">El carrito está vacío.</p>`;
+                totalCarrito.innerText = "$0";
+            } else {
+                carrito.forEach((producto, index) => {
+                    
+                    let precioNum = parseInt(producto.precio.replace("$","").replace(".",""));
+                    total += precioNum;
+
+                    let elemento = document.createElement("div");
+                    elemento.className = "item-carrito row align-items-center";
+                    elemento.innerHTML = `
+                        <div class="col-3">
+                            <img src="${producto.imagen}" width="60" height="60" style="object-fit:cover; border-radius:8px;">
+                        </div>
+                        <div class="col-6">
+                            <h6>${producto.nombre}</h6>
+                            <p class="precio">${producto.precio}</p>
+                        </div>
+                        <div class="col-3 text-end">
+                            <button class="btn-eliminar" onclick="eliminarProducto(${index})">
+                                <i class="fa fa-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    `;
+                    listaCarrito.appendChild(elemento);
+                });
+
+                totalCarrito.innerText = "$" + total.toLocaleString();
+            }
+        }
+
+        function eliminarProducto(index) {
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            carrito.splice(index, 1);
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            actualizarCarrito();
+        }
+
+        function vaciarCarrito() {
+            localStorage.removeItem("carrito");
+            actualizarCarrito();
+        }
+    </script>
+
+</body>
+</html>
